@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Tizen.Wearable.CircularUI.Forms;
+using xamarinExample.Tizen.ViewModels;
 
 namespace xamarinExample.Tizen.Views
 {
@@ -16,6 +17,7 @@ namespace xamarinExample.Tizen.Views
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new MainPageModel();
         }
     }
 }
