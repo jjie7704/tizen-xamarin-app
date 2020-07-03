@@ -4,8 +4,6 @@ notifications:
     on_failure: change
 language: csharp
 solution: xamarinExample.sln
-os:
-  - windows
 install:
   - nuget restore xamarinExample.sln
   - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
