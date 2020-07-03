@@ -1,0 +1,14 @@
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+language: csharp
+solution: xamarinExample.sln
+os:
+  - windows
+install:
+  - nuget restore xamarinExample.sln
+  - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
+script:
+  - msbuild /p:Configuration=Release xamarinExample.sln
+  - mono ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./xamarinExample.Test/bin/Release/**/xamarinExample.Test.dll
