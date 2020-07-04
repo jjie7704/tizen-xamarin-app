@@ -15,12 +15,18 @@
   <ItemGroup>
     <Folder Include="lib\" />
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="res\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Tizen.Wearable.CircularUI" Version="1.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\MainListPage.xaml.cs">
+      <DependentUpon>MainListPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +37,8 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
+
+  <Import Project="..\xamarinExample\xamarinExample.projitems" Label="Shared" />
 
 </Project>
 

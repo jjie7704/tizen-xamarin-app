@@ -11,6 +11,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "xamarinExample", "xamarinEx
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		xamarinExample\xamarinExample.projitems*{2c93a487-2a1a-4cbc-8b36-f706c35c2de4}*SharedItemsImports = 5
+		xamarinExample\xamarinExample.projitems*{46d0a3a8-ab0b-4ad6-ad0a-fce21e8f54fd}*SharedItemsImports = 5
 		xamarinExample\xamarinExample.projitems*{ba4110f4-24c3-475b-8a25-6f60688705bf}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

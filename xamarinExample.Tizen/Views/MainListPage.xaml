@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+             x:Class="xamarinExample.Tizen.Views.MainListPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <c:CirclePage.Content>
+        <c:CircleListView x:Name="mainlist" ItemsSource="{Binding MainList}" SelectedItem="{Binding Selected, Mode=TwoWay}">
+            <c:CircleListView.Header>
+                <x:String>Main List</x:String>
+            </c:CircleListView.Header>
+            <c:CircleListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding Name}"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center"/>
+                    </ViewCell>
+                </DataTemplate>
+            </c:CircleListView.ItemTemplate>
+            <c:CircleListView.HeaderTemplate>
+                <DataTemplate>
+                    <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding .}"
+                    TextColor="Tomato" />
+                </DataTemplate>
+            </c:CircleListView.HeaderTemplate>
+        </c:CircleListView>
+    </c:CirclePage.Content>
+</c:CirclePage>

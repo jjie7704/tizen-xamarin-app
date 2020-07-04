@@ -9,6 +9,10 @@
     <Import_RootNamespace>xamarinExample</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Bunch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ListItemData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BunchData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ListItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MainList.cs" />
   </ItemGroup>
 </Project>

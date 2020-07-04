@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xamarin.Forms;
+using xamarinExample.Tizen.Views;
 
 namespace xamarinExample.Tizen.ViewModels
 {
@@ -39,6 +40,7 @@ namespace xamarinExample.Tizen.ViewModels
             Device.StartTimer(TimeSpan.FromSeconds(2), () =>
             {
                 Progress = 100;
+                Application.Current.MainPage = new NavigationPage(new MainListPage());
                 return false;
             });
         }
