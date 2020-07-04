@@ -7,7 +7,16 @@ mono: none
 dist: xenial
 dotnet: 3.1
 install:
-  - dotnet restore
+- dotnet restore
 script:
-  - dotnet build
-  - dotnet test xamarinExample.Test/xamarinExample.Test.csproj
+- dotnet build
+- dotnet test xamarinExample.Test/xamarinExample.Test.csproj
+deploy:
+  provider: releases
+  api_key:
+    secure: gxaywDvMhypDTY0CM6Xy0HfFd+zPoCvzM3Jxoaoa480aXYVYr6ZV49zy4zntLfKcBZIYGdJomkudt6IE+xe/2jm2kX6i7VUYragI+AYofuUw6fFc8fSlldhCZ8rSrw6wCtIlXhrbaZq4gtAWgW7RkIl6EvkJOICyZOgr9HsZRDiWOtSfMPXCeBD1V/UddeA9aWKU8GtOsC8Jl7cjTR8fVS+mYCXpT6UDDoLeQfwoBMV2mR2Ml0pFMx6yriYkx3E/CWvmt+uXBJSPAUatB+4T/bKo3laagvGqFXb31nu29EmNKmi06uTgW2qrdqIU0redG+wblUrQ46DMmssO2l8wmOezdEaByvQ9kPOlk9m7N3HuzeaJm9HbaAa/kAOzJMqlpXj+YFL1XqvuwPtPpyb9OU+ndqzEMZdwIyzSRfF8XKydtMp9rP+VgpzQzicZUgTlSI36R913uqnQywUd6fvV8RPOp47TW9cJD4SlxQfEfZKTENWtOYDGf8S8gADnombxM+IItOCTWeow2CjqJ3/8aq6xsODX0S5RDjz+/pdNn2aZrtEB/aMsNkXyYJ2uVam3IV3bJfSh/fWTEuB5v36SmgHgMNZ9G/TGeskM3KRYjnaaGW/WveR+wWtvp7HbPtGU16H+h813tTW0aeXHE2M9OQ9swpaUruAtaKdZQcZqcpI=
+  file_glob: true
+  file: "xamarinExample.Tizen/**/*.tpk"
+  on:
+    repo: msaltnet/tizen-xamarin-app
+  skip_cleanup: 'true'
