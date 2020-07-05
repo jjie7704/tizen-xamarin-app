@@ -7,10 +7,10 @@ mono: none
 dist: xenial
 dotnet: 3.1
 install:
-- dotnet restore
+  - dotnet restore
 script:
-- dotnet build
-- dotnet test xamarinExample.Test/xamarinExample.Test.csproj
+  - dotnet build
+  - dotnet test xamarinExample.Test/xamarinExample.Test.csproj
 deploy:
   provider: releases
   api_key:
@@ -19,4 +19,5 @@ deploy:
   file: "xamarinExample.Tizen/**/*.tpk"
   on:
     repo: msaltnet/tizen-xamarin-app
+    tags: true
   skip_cleanup: 'true'
