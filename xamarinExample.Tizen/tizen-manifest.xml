@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest package="org.tizen.example.xamarinExample" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
     <profile name="wearable" />
-    <ui-application appid="org.tizen.example.xamarinExample" exec="xamarinExample.tizen.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+    <ui-application appid="org.tizen.example.xamarinExample" exec="xamarinExample.Tizen.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
         <label>msaltnet_Xamarin</label>
         <icon>xamarinExample.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />

@@ -13,6 +13,11 @@
                 x:Name="label"
                 FontSize="12"
                 Text="{Binding WelcomeGuide}" />
+            <Button Text="Start"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsStartButtonVisible}"
+                Command="{Binding GoNextCommand}" />
         </StackLayout>
     </c:CirclePage.Content>
     <c:CirclePage.CircleSurfaceItems>
