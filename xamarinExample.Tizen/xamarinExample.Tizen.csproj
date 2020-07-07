@@ -24,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\BunchPage.xaml.cs">
+      <DependentUpon>BunchPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\MainListPage.xaml.cs">
       <DependentUpon>MainListPage.xaml</DependentUpon>
     </Compile>

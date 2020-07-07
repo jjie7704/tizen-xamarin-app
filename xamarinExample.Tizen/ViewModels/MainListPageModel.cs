@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 using xamarinExample.Models;
+using xamarinExample.Tizen.Views;
 
 namespace xamarinExample.Tizen.ViewModels
 {
@@ -31,15 +32,14 @@ namespace xamarinExample.Tizen.ViewModels
 
         public Bunch Selected
         {
-            get { return Selected1; }
+            get { return _selected; }
             set
             {
                 Console.WriteLine($"_selected!! {value.Name} {value.Id}");
-                Selected1 = value;
-                //Navigation.PushAsync(new ItemListPage(Selected1));
+                _selected = value;
+                Navigation.PushAsync(new BunchPage(_selected));
             }
         }
 
-        public Bunch Selected1 { get => _selected; set => _selected = value; }
     }
 }
