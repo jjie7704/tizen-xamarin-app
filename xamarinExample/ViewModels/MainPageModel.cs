@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using xamarinExample.Tizen.Views;
+using xamarinExample.Services;
 
-namespace xamarinExample.Tizen.ViewModels
+namespace xamarinExample.ViewModels
 {
     class MainPageModel : BasePageModel
     {
         private string _welcomeGuide = "Sync data";
         private int _progress = 30;
         private bool _isStartButtonVisible = false;
+        private INavigationService _navigationService;
 
         public ICommand GoNextCommand => new Command(GoNext);
 
@@ -53,8 +54,9 @@ namespace xamarinExample.Tizen.ViewModels
                 SetProperty(ref _welcomeGuide, value);
             }
         }
-        public MainPageModel()
+        public MainPageModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             Device.StartTimer(TimeSpan.FromSeconds(2), () =>
             {
                 Progress = 100;
@@ -64,7 +66,7 @@ namespace xamarinExample.Tizen.ViewModels
 
         private void GoNext()
         {
-            Application.Current.MainPage = new NavigationPage(new MainListPage());
+            _navigationService.NavigateToMainListPageAsync();
         }
 
     }

@@ -5,19 +5,19 @@ using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 using xamarinExample.Models;
-using xamarinExample.Tizen.Views;
+using xamarinExample.Services;
 
-namespace xamarinExample.Tizen.ViewModels
+namespace xamarinExample.ViewModels
 {
     class MainListPageModel : BasePageModel
     {
+        private INavigationService _navigationService;
         private MainList _mainList;
         private Bunch _selected;
-        public INavigation Navigation { get; set; }
 
-        public MainListPageModel(INavigation navigation)
+        public MainListPageModel(INavigationService navigationService)
         {
-            Navigation = navigation;
+            _navigationService = navigationService;
             _mainList = new MainList();
             var json = "[ { \"id\": \"a\", \"name\": \"a_name\"}, " +
                 "{ \"id\": \"b\", \"name\": \"b_name\"}, " +
@@ -37,7 +37,7 @@ namespace xamarinExample.Tizen.ViewModels
             {
                 Console.WriteLine($"_selected!! {value.Name} {value.Id}");
                 _selected = value;
-                Navigation.PushAsync(new BunchPage(_selected));
+                _navigationService.NavigateToBunchPageAsync(_selected);
             }
         }
 

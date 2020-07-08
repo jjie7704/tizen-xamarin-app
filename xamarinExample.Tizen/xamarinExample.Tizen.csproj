@@ -16,6 +16,7 @@
     <Folder Include="lib\" />
     <Folder Include="Models\" />
     <Folder Include="res\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>

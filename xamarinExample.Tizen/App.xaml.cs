@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using xamarinExample.Tizen.Services;
 
 namespace xamarinExample.Tizen
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class App : Application
     {
+        private NavigationService _navigationService;
+
         public App()
         {
             InitializeComponent();
-
-            MainPage = new xamarinExample.Tizen.Views.MainPage();
+            _navigationService = new NavigationService();
+            _navigationService.Initialize();
         }
 
         protected override void OnStart()

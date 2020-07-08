@@ -14,5 +14,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\BunchData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ListItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MainList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\INavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BasePageModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BunchPageModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainListPageModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageModel.cs" />
   </ItemGroup>
 </Project>

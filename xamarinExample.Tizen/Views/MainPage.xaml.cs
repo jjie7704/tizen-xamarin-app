@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Tizen.Wearable.CircularUI.Forms;
-using xamarinExample.Tizen.ViewModels;
+using xamarinExample.ViewModels;
+using xamarinExample.Services;
 
 namespace xamarinExample.Tizen.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : CirclePage
     {
-        public MainPage()
+        public MainPage(INavigationService navigationService)
         {
             InitializeComponent();
-            BindingContext = new MainPageModel();
+            BindingContext = new MainPageModel(navigationService);
         }
     }
 }
