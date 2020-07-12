@@ -1,0 +1,2 @@
+rootProject.name='tizenXamrinExample'
+include ':app'
