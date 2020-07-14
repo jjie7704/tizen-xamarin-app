@@ -1,0 +1,29 @@
+using Moq;
+using NUnit.Framework;
+using System;
+using xamarinExample.Models;
+using xamarinExample.Services;
+using xamarinExample.ViewModels;
+
+namespace xamarinExample.test
+{
+    public class MainListPageModelTests
+    {
+        [SetUp]
+        public void Setup()
+        {
+        }
+
+        [Test]
+        public void SelectedProperty_Selected_NavigateToBunchPageAsyncShouldBeCalled()
+        {
+            Mock<INavigationService> mockNavigationService = new Mock<INavigationService>();
+            var mainListPageModel = new MainListPageModel(mockNavigationService.Object);
+            var bunch = new Bunch("mango", "banana");
+            mockNavigationService.Setup(x => x.NavigateToBunchPageAsync(bunch));
+            mainListPageModel.Selected = bunch;
+
+            mockNavigationService.Verify(x => x.NavigateToBunchPageAsync(bunch), Times.Once());
+        }
+    }
+}
