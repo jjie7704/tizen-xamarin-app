@@ -7,4 +7,6 @@ Example for Tizen Xamarin Application
 좋은 Tizen Xamarin App이란 무엇인가에 대한 소수의견
 
 ## ToC
-- [[Tizen .Net Xamarin] 기본 Project 구성](https://blog.msalt.net/302)
+- [Tizen .Net Xamarin.Forms - Project 구조](https://blog.msalt.net/302)
+- [Tizen .Net Xamarin.Forms - CI 적용](https://blog.msalt.net/304)
+- [Tizen .Net Xamarin.Forms - MVVM 적용](https://blog.msalt.net/306)
