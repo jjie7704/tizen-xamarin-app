@@ -24,7 +24,7 @@ namespace xamarinExample.Test
             var isFoundA = false;
             var isFoundB = false;
             var isFoundC = false;
-            IList<Bunch> bunchList = repository.GetBunchList();
+            IList<Bunch> bunchList = repository.BunchList;
             foreach (var bunch in bunchList)
             {
                 Console.WriteLine($"Bunch! {bunch.Id}, {bunch.Name}");

@@ -26,7 +26,7 @@ namespace xamarinExample.ViewModels
             _bunch.SyncBunchListFromJson(json);
         }
 
-        public ObservableCollection<BunchItem> ItemList
+        public IList<BunchItem> ItemList
         {
             get { return _bunch.ItemList; }
         }

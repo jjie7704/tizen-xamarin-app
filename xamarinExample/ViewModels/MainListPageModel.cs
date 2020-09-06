@@ -21,12 +21,12 @@ namespace xamarinExample.ViewModels
             _navigationService = navigationService;
             _repository = repository;
             _repository.BunchListChanged += OnBunchListChanged;
-            MainList = _repository.GetBunchList();
+            MainList = _repository.BunchList;
         }
 
         private void OnBunchListChanged(object sender, EventArgs e)
         {
-            MainList = _repository.GetBunchList();
+            MainList = _repository.BunchList;
         }
 
         public IList<Bunch> MainList

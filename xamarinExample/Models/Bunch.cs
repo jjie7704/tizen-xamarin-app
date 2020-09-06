@@ -8,9 +8,10 @@ namespace xamarinExample.Models
 {
     public class Bunch
     {
-        private ObservableCollection<BunchItem> _itemList = new ObservableCollection<BunchItem>();
+        private IList<BunchItem> _itemList = new List<BunchItem>();
         private string _id = "default";
         private string _name = "no_name";
+        private bool _isSynchronized = false;
 
         public Bunch(string id, string name)
         {
@@ -18,10 +19,11 @@ namespace xamarinExample.Models
             _name = name;
         }
 
-        public ObservableCollection<BunchItem> ItemList
+        public IList<BunchItem> ItemList
         {
-            get { return _itemList; }
+            get { return new List<BunchItem>(_itemList); }
         }
+
         public string Id
         {
             get { return _id; }

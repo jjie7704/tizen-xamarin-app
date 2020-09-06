@@ -15,9 +15,9 @@ namespace xamarinExample.Models
             InitBunchList();
         }
 
-        public IList<Bunch> GetBunchList()
+        public IList<Bunch> BunchList
         {
-            return new List<Bunch>(_bunchList);
+            get { return new List<Bunch>(_bunchList); }
         }
 
         public void UpdateBunchList(string json)

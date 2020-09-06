@@ -5,7 +5,7 @@ using xamarinExample.Models;
 using xamarinExample.Services;
 using xamarinExample.ViewModels;
 
-namespace xamarinExample.Test
+namespace xamarinExample.test
 {
     public class MainListPageModelTests
     {

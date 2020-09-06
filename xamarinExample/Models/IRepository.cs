@@ -7,8 +7,7 @@ namespace xamarinExample.Models
     public interface IRepository
     {
         event EventHandler BunchListChanged;
-
-        IList<Bunch> GetBunchList();
+        IList<Bunch> BunchList { get; }
         void UpdateBunchList(string json);
     }
 }
