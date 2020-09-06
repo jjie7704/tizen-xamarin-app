@@ -4,7 +4,7 @@ using System.Text;
 
 namespace xamarinExample.Models
 {
-    class ListItemData
+    class BunchItemData
     {
         public string id { get; set; }
         public string name { get; set; }

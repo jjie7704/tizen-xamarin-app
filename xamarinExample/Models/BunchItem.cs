@@ -4,12 +4,12 @@ using System.Text;
 
 namespace xamarinExample.Models
 {
-    public class ListItem
+    public class BunchItem
     {
         private string _id;
         private string _name;
 
-        public ListItem(string id, string name)
+        public BunchItem(string id, string name)
         {
             _id = id;
             _name = name;

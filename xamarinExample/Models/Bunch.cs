@@ -8,7 +8,7 @@ namespace xamarinExample.Models
 {
     public class Bunch
     {
-        private ObservableCollection<ListItem> _itemList = new ObservableCollection<ListItem>();
+        private ObservableCollection<BunchItem> _itemList = new ObservableCollection<BunchItem>();
         private string _id = "default";
         private string _name = "no_name";
 
@@ -18,7 +18,7 @@ namespace xamarinExample.Models
             _name = name;
         }
 
-        public ObservableCollection<ListItem> ItemList
+        public ObservableCollection<BunchItem> ItemList
         {
             get { return _itemList; }
         }
@@ -36,10 +36,10 @@ namespace xamarinExample.Models
             _itemList.Clear();
             try
             {
-                IList<ListItemData> list = JsonConvert.DeserializeObject<IList<ListItemData>>(json); ;
+                IList<BunchItemData> list = JsonConvert.DeserializeObject<IList<BunchItemData>>(json); ;
                 foreach (var item in list)
                 {
-                    _itemList.Add(new ListItem(item.id, item.name));
+                    _itemList.Add(new BunchItem(item.id, item.name));
                     Console.WriteLine($"ListItem {item.id}, {item.name}");
                 }
             }

@@ -13,7 +13,7 @@ namespace xamarinExample.ViewModels
     {
         private INavigationService _navigationService;
         private Bunch _bunch;
-        private ListItem _selected;
+        private BunchItem _selected;
         public INavigation Navigation { get; set; }
 
         public BunchPageModel(INavigationService navigationService, Bunch bunch)
@@ -26,12 +26,12 @@ namespace xamarinExample.ViewModels
             _bunch.SyncBunchListFromJson(json);
         }
 
-        public ObservableCollection<ListItem> ItemList
+        public ObservableCollection<BunchItem> ItemList
         {
             get { return _bunch.ItemList; }
         }
 
-        public ListItem Selected
+        public BunchItem Selected
         {
             get { return _selected; }
             set
