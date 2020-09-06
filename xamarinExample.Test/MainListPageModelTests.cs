@@ -5,7 +5,7 @@ using xamarinExample.Models;
 using xamarinExample.Services;
 using xamarinExample.ViewModels;
 
-namespace xamarinExample.test
+namespace xamarinExample.Test
 {
     public class MainListPageModelTests
     {
@@ -18,7 +18,8 @@ namespace xamarinExample.test
         public void SelectedProperty_Selected_NavigateToBunchPageAsyncShouldBeCalled()
         {
             Mock<INavigationService> mockNavigationService = new Mock<INavigationService>();
-            var mainListPageModel = new MainListPageModel(mockNavigationService.Object);
+            Mock<IRepository> mockRepository = new Mock<IRepository>();
+            var mainListPageModel = new MainListPageModel(mockNavigationService.Object, mockRepository.Object);
             var bunch = new Bunch("mango", "banana");
             mockNavigationService.Setup(x => x.NavigateToBunchPageAsync(bunch));
             mainListPageModel.Selected = bunch;

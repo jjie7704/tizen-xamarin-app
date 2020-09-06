@@ -12,22 +12,30 @@ namespace xamarinExample.ViewModels
     class MainListPageModel : BasePageModel
     {
         private INavigationService _navigationService;
-        private MainList _mainList;
+        private IRepository _repository;
         private Bunch _selected;
+        private IList<Bunch> _bunchList;
 
-        public MainListPageModel(INavigationService navigationService)
+        public MainListPageModel(INavigationService navigationService, IRepository repository)
         {
             _navigationService = navigationService;
-            _mainList = new MainList();
-            var json = "[ { \"id\": \"a\", \"name\": \"a_name\"}, " +
-                "{ \"id\": \"b\", \"name\": \"b_name\"}, " +
-                "{ \"id\": \"c\", \"name\": \"c_name\"} ]";
-            _mainList.SyncBunchListFromJson(json);
+            _repository = repository;
+            _repository.BunchListChanged += OnBunchListChanged;
+            MainList = _repository.GetBunchList();
         }
 
-        public ObservableCollection<Bunch> MainList
+        private void OnBunchListChanged(object sender, EventArgs e)
         {
-            get { return _mainList.BunchList; }
+            MainList = _repository.GetBunchList();
+        }
+
+        public IList<Bunch> MainList
+        {
+            get { return _bunchList; }
+            set
+            {
+                SetProperty(ref _bunchList, value);
+            }
         }
 
         public Bunch Selected

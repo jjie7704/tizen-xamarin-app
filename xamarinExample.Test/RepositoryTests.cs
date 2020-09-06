@@ -1,10 +1,12 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using xamarinExample.Models;
 
-namespace xamarinExample.test
+namespace xamarinExample.Test
 {
-    public class MainListTests
+    public class RepositoryTests
     {
         [SetUp]
         public void Setup()
@@ -12,17 +14,18 @@ namespace xamarinExample.test
         }
 
         [Test]
-        public void SyncBunchListFromJson_CalledWithCorrectJson_UpdatedCorrectly()
+        public void UpdateBunchList_CalledWithCorrectJson_BunchListIsUpdatedCorrectly()
         {
             var json = "[ { \"id\": \"a\", \"name\": \"a_name\"}, " +
                 "{ \"id\": \"b\", \"name\": \"b_name\"}, " +
                 "{ \"id\": \"c\", \"name\": \"c_name\"} ]";
-            var mainlist = new MainList();
-            mainlist.SyncBunchListFromJson(json);
+            var repository = new Repository();
+            repository.UpdateBunchList(json);
             var isFoundA = false;
             var isFoundB = false;
             var isFoundC = false;
-            foreach (var bunch in mainlist.BunchList)
+            IList<Bunch> bunchList = repository.GetBunchList();
+            foreach (var bunch in bunchList)
             {
                 Console.WriteLine($"Bunch! {bunch.Id}, {bunch.Name}");
                 if (bunch.Id == "a" && bunch.Name == "a_name")
@@ -36,7 +39,7 @@ namespace xamarinExample.test
             Assert.IsTrue(isFoundA);
             Assert.IsTrue(isFoundB);
             Assert.IsTrue(isFoundC);
-            Assert.AreEqual(mainlist.BunchList.Count, 3);
+            Assert.AreEqual(bunchList.Count, 3);
         }
     }
 }

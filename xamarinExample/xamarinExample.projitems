@@ -13,7 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\BunchItemData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BunchData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BunchItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\MainList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\IRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Repository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\INavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BasePageModel.cs" />

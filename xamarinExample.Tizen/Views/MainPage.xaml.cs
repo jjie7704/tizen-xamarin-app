@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using Tizen.Wearable.CircularUI.Forms;
 using xamarinExample.ViewModels;
 using xamarinExample.Services;
+using xamarinExample.Models;
 
 namespace xamarinExample.Tizen.Views
 {
