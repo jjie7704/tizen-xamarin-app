@@ -2,16 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 
 namespace xamarinExample.Models
 {
     public class Bunch
     {
-        private IList<BunchItem> _itemList = new List<BunchItem>();
+        private IDictionary<string, BunchItem> _itemMap = new Dictionary<string, BunchItem>();
         private string _id = "default";
         private string _name = "no_name";
-        private bool _isSynchronized = false;
+        public event EventHandler BunchChanged;
 
         public Bunch(string id, string name)
         {
@@ -21,7 +22,7 @@ namespace xamarinExample.Models
 
         public IList<BunchItem> ItemList
         {
-            get { return new List<BunchItem>(_itemList); }
+            get { return new List<BunchItem>(_itemMap.Values); }
         }
 
         public string Id
@@ -33,23 +34,44 @@ namespace xamarinExample.Models
             get { return _name; }
         }
 
-        public void SyncBunchListFromJson(string json)
+        public void UpdateItems(IList<BunchItem> itemList)
         {
-            _itemList.Clear();
-            try
+            IDictionary<string, BunchItem> newItemMap = new Dictionary<string, BunchItem>();
+            bool isChanged;
+            foreach (var item in itemList)
             {
-                IList<BunchItemData> list = JsonConvert.DeserializeObject<IList<BunchItemData>>(json); ;
-                foreach (var item in list)
+                if (_itemMap.TryGetValue(item.Id, out BunchItem target))
                 {
-                    _itemList.Add(new BunchItem(item.id, item.name));
-                    Console.WriteLine($"ListItem {item.id}, {item.name}");
+                    if (target.Content.Equals(item.Content)
+                        && target.IsActive != item.IsActive)
+                    {
+                        newItemMap.Add(item.Id, target);
+                    }
+                    else
+                    {
+                        isChanged = true;
+                        target.Content = item.Content;
+                        target.IsActive = item.IsActive;
+                        newItemMap.Add(item.Id, target);
+                    }
+                }
+                else
+                {
+                    isChanged = true;
+                    newItemMap.Add(item.Id, new BunchItem(item.Id, item.Content, item.IsActive));
                 }
             }
-            catch
-            {
-                Console.WriteLine($"Invalid json!");
-            }
+
+            isChanged = newItemMap.Count != _itemMap.Count || !newItemMap.Keys.SequenceEqual(_itemMap.Keys);
+
+            if (isChanged)
+                OnBunchChanged();
         }
 
+        protected virtual void OnBunchChanged()
+        {
+            EventHandler handler = BunchChanged;
+            handler?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

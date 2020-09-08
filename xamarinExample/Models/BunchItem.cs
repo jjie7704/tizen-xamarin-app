@@ -7,20 +7,29 @@ namespace xamarinExample.Models
     public class BunchItem
     {
         private string _id;
-        private string _name;
+        private string _content;
+        private bool _isActive = false;
 
-        public BunchItem(string id, string name)
+        public BunchItem(string id, string content, bool isActive)
         {
             _id = id;
-            _name = name;
+            _content = content;
+            _isActive = isActive;
         }
+
         public string Id
         {
             get { return _id; }
         }
-        public string Name
+        public string Content
         {
-            get { return _name; }
+            get { return _content; }
+            set { _content = value; }
+        }
+        public bool IsActive
+        {
+            get { return _isActive; }
+            set { _isActive = value; }
         }
 
     }

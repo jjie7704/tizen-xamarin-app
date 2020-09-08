@@ -7,6 +7,7 @@ namespace xamarinExample.Models
     class BunchItemData
     {
         public string id { get; set; }
-        public string name { get; set; }
+        public string content { get; set; }
+        public bool isActive { get; set; }
     }
 }

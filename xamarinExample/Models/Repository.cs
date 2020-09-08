@@ -7,7 +7,7 @@ namespace xamarinExample.Models
 {
     class Repository : IRepository
     {
-        private IList<Bunch> _bunchList = new List<Bunch>();
+        private IDictionary<string, Bunch> _bunchMap = new Dictionary<string, Bunch>();
         public event EventHandler BunchListChanged;
 
         public Repository()
@@ -17,22 +17,53 @@ namespace xamarinExample.Models
 
         public IList<Bunch> BunchList
         {
-            get { return new List<Bunch>(_bunchList); }
+            get { return new List<Bunch>(_bunchMap.Values); }
         }
 
         public void UpdateBunchList(string json)
         {
-            _bunchList.Clear();
+            var newMap = new Dictionary<string, Bunch>();
             try
             {
                 IList<BunchData> list = JsonConvert.DeserializeObject<IList<BunchData>>(json);
                 foreach (var bunch in list)
                 {
-                    _bunchList.Add(new Bunch(bunch.id, bunch.name));
+                    if (_bunchMap.TryGetValue(bunch.id, out Bunch old))
+                    {
+                        newMap.Add(bunch.id, old);
+                    }
+                    else
+                    {
+                        newMap.Add(bunch.id, new Bunch(bunch.id, bunch.name));
+                    }
                     Console.WriteLine($"Bunch {bunch.id}, {bunch.name}");
                 }
+                _bunchMap = newMap;
                 PutBunchList();
                 OnBunchListChanged();
+            }
+            catch
+            {
+                Console.WriteLine($"Invalid json!");
+            }
+        }
+
+        public void UpdateBunch(string id, string json)
+        {
+            IList<BunchItem> itemList = new List<BunchItem>();
+            try
+            {
+                IList<BunchItemData> list = JsonConvert.DeserializeObject<IList<BunchItemData>>(json); ;
+                foreach (var item in list)
+                {
+                    itemList.Add(new BunchItem(item.id, item.content, item.isActive));
+                    Console.WriteLine($"ListItem {item.id}, {item.content}, {item.isActive}");
+                }
+                if (_bunchMap.TryGetValue(id, out Bunch targetBunch))
+                {
+                    targetBunch.UpdateItems(itemList);
+                    PutBunch();
+                }
             }
             catch
             {
@@ -55,5 +86,11 @@ namespace xamarinExample.Models
         {
             // insert to sql
         }
+
+        private void PutBunch()
+        {
+            // insert to sql
+        }
+
     }
 }

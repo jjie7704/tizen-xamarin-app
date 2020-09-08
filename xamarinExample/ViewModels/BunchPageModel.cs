@@ -20,10 +20,6 @@ namespace xamarinExample.ViewModels
         {
             _navigationService = navigationService;
             _bunch = bunch;
-            var json = "[ { \"id\": \"a-1\", \"name\": \"a_1_name\"}, " +
-                "{ \"id\": \"a-2\", \"name\": \"a_2_name\"}, " +
-                "{ \"id\": \"a-3\", \"name\": \"a_3_name\"} ]";
-            _bunch.SyncBunchListFromJson(json);
         }
 
         public IList<BunchItem> ItemList
@@ -36,7 +32,7 @@ namespace xamarinExample.ViewModels
             get { return _selected; }
             set
             {
-                Console.WriteLine($"_selected!! {value.Name} {value.Id}");
+                Console.WriteLine($"_selected!! {value.Content} {value.Id}");
                 _selected = value;
             }
         }

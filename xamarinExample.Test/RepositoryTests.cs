@@ -28,11 +28,11 @@ namespace xamarinExample.Test
             foreach (var bunch in bunchList)
             {
                 Console.WriteLine($"Bunch! {bunch.Id}, {bunch.Name}");
-                if (bunch.Id == "a" && bunch.Name == "a_name")
+                if (bunch.Id.Equals("a") && bunch.Name.Equals("a_name"))
                     isFoundA = true;
-                else if (bunch.Id == "b" && bunch.Name == "b_name")
+                else if (bunch.Id.Equals("b") && bunch.Name.Equals("b_name"))
                     isFoundB = true;
-                else if (bunch.Id == "c" && bunch.Name == "c_name")
+                else if (bunch.Id.Equals("c") && bunch.Name.Equals("c_name"))
                     isFoundC = true;
             }
 
@@ -40,6 +40,33 @@ namespace xamarinExample.Test
             Assert.IsTrue(isFoundB);
             Assert.IsTrue(isFoundC);
             Assert.AreEqual(bunchList.Count, 3);
+
+            var json2 = "[ { \"id\": \"d\", \"name\": \"d_name\"}, " +
+                "{ \"id\": \"c\", \"name\": \"c_name\"} ]";
+            repository.UpdateBunchList(json2);
+            isFoundA = false;
+            isFoundB = false;
+            isFoundC = false;
+            var isFoundD = false;
+            bunchList = repository.BunchList;
+            foreach (var bunch in bunchList)
+            {
+                Console.WriteLine($"Bunch! {bunch.Id}, {bunch.Name}");
+                if (bunch.Id.Equals("a") && bunch.Name.Equals("a_name"))
+                    isFoundA = true;
+                else if (bunch.Id.Equals("b") && bunch.Name.Equals("b_name"))
+                    isFoundB = true;
+                else if (bunch.Id.Equals("c") && bunch.Name.Equals("c_name"))
+                    isFoundC = true;
+                else if (bunch.Id.Equals("d") && bunch.Name.Equals("d_name"))
+                    isFoundD = true;
+            }
+
+            Assert.IsFalse(isFoundA);
+            Assert.IsFalse(isFoundB);
+            Assert.IsTrue(isFoundC);
+            Assert.IsTrue(isFoundD);
+            Assert.AreEqual(bunchList.Count, 2);
         }
     }
 }
