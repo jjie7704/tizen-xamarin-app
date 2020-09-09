@@ -63,7 +63,7 @@ namespace xamarinExample.Models
             }
 
             isChanged = newItemMap.Count != _itemMap.Count || !newItemMap.Keys.SequenceEqual(_itemMap.Keys);
-
+            _itemMap = newItemMap;
             if (isChanged)
                 OnBunchChanged();
         }

@@ -10,8 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Bunch.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\BunchItemData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\BunchData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\BunchInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BunchItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\IRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Repository.cs" />

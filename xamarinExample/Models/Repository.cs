@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,49 +21,61 @@ namespace xamarinExample.Models
             get { return new List<Bunch>(_bunchMap.Values); }
         }
 
-        public void UpdateBunchList(string json)
+        private void UpdateBunchList(IList<BunchData> bunchList)
         {
             var newMap = new Dictionary<string, Bunch>();
-            try
+            foreach (var bunch in bunchList)
             {
-                IList<BunchData> list = JsonConvert.DeserializeObject<IList<BunchData>>(json);
-                foreach (var bunch in list)
+                if (_bunchMap.TryGetValue(bunch.id, out Bunch old))
                 {
-                    if (_bunchMap.TryGetValue(bunch.id, out Bunch old))
-                    {
-                        newMap.Add(bunch.id, old);
-                    }
-                    else
-                    {
-                        newMap.Add(bunch.id, new Bunch(bunch.id, bunch.name));
-                    }
-                    Console.WriteLine($"Bunch {bunch.id}, {bunch.name}");
+                    newMap.Add(bunch.id, old);
                 }
-                _bunchMap = newMap;
-                PutBunchList();
-                OnBunchListChanged();
+                else
+                {
+                    newMap.Add(bunch.id, new Bunch(bunch.id, bunch.name));
+                }
+                Console.WriteLine($"Bunch {bunch.id}, {bunch.name}");
             }
-            catch
-            {
-                Console.WriteLine($"Invalid json!");
-            }
+            _bunchMap = newMap;
+            PutBunchList();
+            OnBunchListChanged();
         }
 
-        public void UpdateBunch(string id, string json)
+        private void UpdateBunch(string id, IList<BunchItemData> items)
         {
-            IList<BunchItem> itemList = new List<BunchItem>();
-            try
+            if (_bunchMap.TryGetValue(id, out Bunch targetBunch))
             {
-                IList<BunchItemData> list = JsonConvert.DeserializeObject<IList<BunchItemData>>(json); ;
-                foreach (var item in list)
+                IList<BunchItem> itemList = new List<BunchItem>();
+                foreach (var item in items)
                 {
                     itemList.Add(new BunchItem(item.id, item.content, item.isActive));
                     Console.WriteLine($"ListItem {item.id}, {item.content}, {item.isActive}");
                 }
-                if (_bunchMap.TryGetValue(id, out Bunch targetBunch))
+                targetBunch.UpdateItems(itemList);
+                PutBunch();
+            }
+            else
+            {
+                Console.WriteLine($"Invaild bunch Id: {id}");
+            }
+        }
+
+        public void Update(string json)
+        {
+            try
+            {
+                BunchInfo info = JsonConvert.DeserializeObject<BunchInfo>(json);
+                Console.WriteLine($"bunchList: {info.bunchList}");
+                if (info.bunchList != null)
+                    UpdateBunchList(info.bunchList);
+
+                if (info.bunchs == null)
+                    return;
+
+                Console.WriteLine($"bunchs: {info.bunchs}");
+                foreach (var bunch in info.bunchs)
                 {
-                    targetBunch.UpdateItems(itemList);
-                    PutBunch();
+                    UpdateBunch(bunch.id, bunch.items);
                 }
             }
             catch

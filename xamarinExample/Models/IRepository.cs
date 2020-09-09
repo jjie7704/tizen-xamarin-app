@@ -8,6 +8,6 @@ namespace xamarinExample.Models
     {
         event EventHandler BunchListChanged;
         IList<Bunch> BunchList { get; }
-        void UpdateBunchList(string json);
+        public void Update(string json);
     }
 }
